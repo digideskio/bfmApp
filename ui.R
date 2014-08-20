@@ -7,7 +7,9 @@ shinyUI(fluidPage(
     sidebarPanel(
       selectInput('formula',
                   label = 'Formula',
-                  choices = list('trend', 'trend + harmon', 'harmon'),
+                  choices = list('trend',
+                              'trend + harmon',
+                              'harmon'),
                   selected = 'trend + harmon'),
       
       dateInput("year", 
@@ -23,8 +25,12 @@ shinyUI(fluidPage(
       
       selectInput("history", label = "History period",
                   choices = list('ROC', 'BP', 'all'),
-                  selected = 'ROC')
+                  selected = 'ROC'),
       # This should also be able to take a date as input; combine it with year argument by using a dateRangeInput if select 'date'
+      
+      selectInput('plotType', label = 'plot type',
+                  choices = list('ggplot', 'base'),
+                  selected = 'base')
       
       
       
