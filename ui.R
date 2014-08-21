@@ -5,6 +5,13 @@ shinyUI(fluidPage(
   
   sidebarLayout(
     sidebarPanel(
+      
+      selectInput("input_type", label = "Input type",
+                  c("upload rds file", "Example time-series")),
+      
+      uiOutput("ui"),
+      uiOutput("ui2"),
+      
       selectInput('formula',
                   label = 'Formula',
                   choices = list('trend',
@@ -16,10 +23,10 @@ shinyUI(fluidPage(
                   label = "Begining of monitoring period",
                   min = '2001-01-01', max = '2014-01-01', value = '2008-01-01'), # Make that dynamic (adapted to time-series range)
       
-      selectInput("id",
-                  label = "Time Series Number", 
-                  choices = as.list(as.character(seq(1,300))),
-                  selected = '1'),
+#       selectInput("id",
+#                   label = "Time Series Number", 
+#                   choices = as.list(as.character(seq(1,300))),
+#                   selected = '1'),
       
       numericInput("order", label = 'Harmonic order', value = 1),
       
