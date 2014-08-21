@@ -17,11 +17,16 @@ shinyServer(
       switch(input$input_type,
              "upload rds file" = fileInput('ts', label = 'zoo rds file',
                                            accept = '.rds'),
-             "Example time-series" = assign('ts', readRDS('data//landsatZoo.rds')))
+             "Example time-series" = NULL)
     })
       
     output$ui2 <- renderUI({
-      ts <- readRDS(input$ts$datapath)
+      if(input$input_type == "upload rds file") {
+        ts <- readRDS(input$ts$datapath)
+      } else {
+        ts <- readRDS('data/landsatZoo.rds')
+      }
+             
       n <- ncol(ts)
       
       selectInput("id",
@@ -31,7 +36,11 @@ shinyServer(
     })
       
     output$ui3 <- renderUI({
-      ts <- readRDS(input$ts$datapath) # Not sure this has to be repeted
+      if(input$input_type == "upload rds file") {
+        ts <- readRDS(input$ts$datapath)
+      } else {
+        ts <- readRDS('data/landsatZoo.rds')
+      }
       selectInput("id",
                   label = "Time Series Number", 
                   choices = as.list(as.character(seq(1,n))),
@@ -44,7 +53,11 @@ shinyServer(
     output$bfmPlot <- renderPlot({
       
       # Reformat variable selected in UI
-#       ts <- readRDS(input$ts$datapath)
+      if(input$input_type == "upload rds file") {
+        ts <- readRDS(input$ts$datapath)
+      } else {
+        ts <- readRDS('data/landsatZoo.rds')
+      }
       
       formula <- switch(input$formula,
                         'trend' = response ~ trend,
