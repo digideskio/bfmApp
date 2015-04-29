@@ -1,6 +1,6 @@
 ggplot_bfm <- function(x, order, formula) {
   
-  ggdf <- x$tspp
+  ggdf <- bfastpp(x$data, order = order)
   ggdf[,'breaks'] <- NA
   ggdf[,'monitor'] <- NA
   ggdf$breaks[x$breakpoint == ggdf$time] <- 1
@@ -13,7 +13,7 @@ ggplot_bfm <- function(x, order, formula) {
     geom_line() +
     geom_point(color = 'green') +
     geom_vline(xintercept = xIntercept, color = 'red', linetype = 'dashed') +
-    geom_vline(xintercept = xIntercept2, color = 'blue') +
+    geom_vline(xintercept = xIntercept2, color = 'blue', linetype = 'dashed') +
     scale_x_continuous(breaks=floor(min(ggdf$time)):ceiling(max(ggdf$time))) +
     theme(axis.text.x = element_text(angle = 60, hjust = 1))
   
