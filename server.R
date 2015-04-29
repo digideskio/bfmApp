@@ -4,7 +4,7 @@ library(ggplot2)
 library(lubridate)
 library(dplyr)
 source('fortify.bfastmonitor.R')
-source('ggplotBFAST.R')
+source('ggplot_bfm.R')
 source('runPixelExo.R')
 ts <- readRDS('data//landsatZoo.rds')
 
@@ -41,8 +41,7 @@ shinyServer(
       if(!plotType) {
         plot(pixel)
       } else {
-        pixelFort <- fortify(pixel)
-        ggplotBFAST(pixelFort)
+        ggplot_bfm(pixel, order, formula)
       }
       
       
