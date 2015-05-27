@@ -26,9 +26,9 @@ shinyServer(
       
       history <- input$history
       
-      plotType <- switch(input$plotType,
-                         'ggplot' = TRUE,
-                         'base' = FALSE)
+#       plotType <- switch(input$plotType,
+#                          'ggplot' = TRUE,
+#                          'base' = FALSE)
       
       
       
@@ -38,11 +38,9 @@ shinyServer(
                         formula = formula, order = order,
                         history = history)
       
-      if(!plotType) {
+      
         plot(pixel)
-      } else {
-        ggplot_bfm(pixel, order, formula)
-      }
+     
       
       
 
