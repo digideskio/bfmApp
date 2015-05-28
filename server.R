@@ -1,6 +1,5 @@
 library(zoo)
 library(bfast)
-library(ggplot2)
 library(lubridate)
 library(dplyr)
 source('fortify.bfastmonitor.R')
