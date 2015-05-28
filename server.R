@@ -7,6 +7,7 @@ source('fortify.bfastmonitor.R')
 source('ggplot_bfm.R')
 source('runPixelExo.R')
 ts <- readRDS('data//landsatZoo.rds')
+obs <- readRDS('data/observations.rds')
 
 shinyServer(
   function(input, output) {
@@ -39,12 +40,10 @@ shinyServer(
                         history = history)
       
       
-        plot(pixel)
-     
-      
-      
+      plot(pixel)
 
-      
     })
+    
+    output$table1 <- renderTable({obs})
   }
 )
