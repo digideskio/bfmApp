@@ -5,10 +5,10 @@ shinyUI(fluidPage(
   
     fluidRow(
       column(width = 2,
-             selectInput("id",
-                         label = "Time Series Number", 
-                         choices = as.list(as.character(seq(1,11))),
-                         selected = '1'),
+
+             fileInput(inputId = 'zooTs', label = 'rds file', multiple = FALSE, accept = '.rds'),
+
+             uiOutput("ui"),
              
              selectInput('formula',
                          label = 'Formula',
@@ -33,10 +33,8 @@ shinyUI(fluidPage(
              titlePanel("bfastApp"),
              h3('Run bfastmonitor interactively'),
              h3(em('by ', a('Loïc Dutrieux', href = 'http://www.loicdutrieux.com'))),
-             tabsetPanel(
-               tabPanel('Time Series-viewer', plotOutput("bfmPlot"),
-                        p('This is a work in progress version;', span('Time series number', style = 'color:green'), 'is a set of 11 NDMI time-series selected from a Landsat stack covering a study area in Peru (Madre de Dios). Thanks to ',  strong('Mathieu Decuyper '), 'for providing the samples points')),
-               tabPanel('Detail', tableOutput('table1'))
+             mainPanel(
+                plotOutput("bfmPlot")
              ))
     )))
     
